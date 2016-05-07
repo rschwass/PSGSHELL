@@ -18,7 +18,7 @@ Without Returning output:
 commander.ps1 'powershell oneliner ~host:host:host'
 
 
-Examples:
+Examples: All One Liner commands
 
 # Get IP address
 .\commander.ps1 '$var = ipconfig /all; sendemail $var ~123434'
