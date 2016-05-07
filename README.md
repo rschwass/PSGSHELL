@@ -10,6 +10,7 @@ Built for Powershell 2.0 (Win7)
 
 syntax is: 
 To Return Output:
+
 commander.ps1 '$variable = powershell oneliner; sendemail $variable ~host:host:host'
 
 Without Returning output:
