@@ -1,5 +1,7 @@
 # PSGSHELL
 
+New version in the base64 folder encodes the subject lines/commands to help thwart IDS/IPS's looking for such things.
+
 Setup:
 Create a new gmail account for this and only this.
 Allow non-secure apps
