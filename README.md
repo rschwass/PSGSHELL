@@ -1,5 +1,5 @@
 # PSGSHELL
-
+I would like to give special thanks to John Strand, Black Hills Information Security (http://www.blackhillsinfosec.com/) and byt3bl33d3r (https://github.com/byt3bl33d3r)
 Version .0 Release
 
 This version and all future versions will only support the base64 encoded messages.
